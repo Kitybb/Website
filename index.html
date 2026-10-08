@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>522 Connection Timed Out - Website Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background 0.6s ease, color 0.6s ease;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(0.98); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body id="pageBody" class="min-h-screen text-slate-800 dark:text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- HEADER -->
+    <header class="w-full px-6 py-4">
+        <div class="max-w-4xl mx-auto glass-panel rounded-2xl px-6 py-3 flex items-center justify-between shadow-xl">
+            <div class="flex items-center space-x-3">
+                <div id="navLogo" class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md transition-all duration-300">
+                    <i class="fa-brands fa-wordpress"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight leading-tight">Website Portal</h1>
+                    <p class="text-xs opacity-75">Error 522 Resolution</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <!-- Theme Dropdown -->
+                <div class="relative">
+                    <button onclick="toggleThemeMenu()" id="themeMenuBtn" class="flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-semibold glass-card hover:shadow transition">
+                        <i class="fa-solid fa-palette"></i>
+                        <span id="activeThemeLabel" class="hidden sm:inline">Theme</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="themeDropdown" class="absolute right-0 mt-2 w-52 glass-panel rounded-2xl p-2 shadow-2xl hidden z-50 text-xs font-medium space-y-1">
+                        <div class="px-3 py-1.5 text-[10px] uppercase tracking-wider opacity-60 font-bold">Select Theme Style</div>
+                        <button onclick="setThemeStyle('emerald')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/15 transition flex items-center justify-between">Aurora Emerald <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span></button>
+                        <button onclick="setThemeStyle('neon')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/15 transition flex items-center justify-between">Cyber Neon <span class="w-3 h-3 rounded-full bg-cyan-500 inline-block"></span></button>
+                        <button onclick="setThemeStyle('coral')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/15 transition flex items-center justify-between">Sunset Coral <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span></button>
+                        <button onclick="setThemeStyle('ocean')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/15 transition flex items-center justify-between">Deep Ocean Blue <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span></button>
+                        <button onclick="setThemeStyle('cosmos')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/15 transition flex items-center justify-between">Stellar Cosmos <span class="w-3 h-3 rounded-full bg-purple-600 inline-block"></span></button>
+                        <button onclick="setThemeStyle('obsidian')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/15 transition flex items-center justify-between">Ruby Obsidian <span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span></button>
+                    </div>
+                </div>
+
+                <!-- Dark Mode Toggle Button -->
+                <button onclick="toggleDarkMode()" id="darkModeBtn" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:shadow transition" title="Toggle Light/Dark Mode">
+                    <i id="darkModeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN 522 CONTENT CONTAINER -->
+    <main class="flex-grow max-w-4xl mx-auto px-6 py-6 w-full space-y-6 flex flex-col justify-center">
+        <section class="glass-panel rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-2xl animate-pulse-slow">
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-30 filter blur-3xl pointer-events-none transition-all duration-700" id="blob1"></div>
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full opacity-30 filter blur-3xl pointer-events-none transition-all duration-700" id="blob2"></div>
+            
+            <div class="relative z-10 max-w-xl mx-auto space-y-6">
+                <!-- Error Badge & Heading -->
+                <div class="space-y-2">
+                    <span id="heroBadge" class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider inline-block shadow-sm">Connection Timed Out</span>
+                    <h2 class="text-6xl md:text-8xl font-black tracking-tighter" style="color: var(--accent-hex);">522</h2>
+                    <h3 class="text-xl md:text-2xl font-bold tracking-tight">Origin Connection Time-out</h3>
+                    <p class="text-xs md:text-sm opacity-80 leading-relaxed">The web server is not responding to gateway requests. CDN or your reverse proxy could not establish a TCP connection with the origin web server.</p>
+                </div>
+
+                <!-- Automatic Retry Countdown & Status -->
+                <div class="glass-card rounded-2xl p-4 shadow-md max-w-sm mx-auto flex items-center justify-between">
+                    <div class="flex items-center space-x-3 text-left">
+                        <div class="w-3 h-3 rounded-full bg-amber-500 animate-ping"></div>
+                        <div>
+                            <span class="text-[10px] font-bold uppercase opacity-65 block">Auto-Retrying in</span>
+                            <span id="countdownTimer" class="text-sm font-black">15 seconds</span>
+                        </div>
+                    </div>
+                    <button onclick="triggerManualRetry()" class="px-4 py-2 rounded-xl text-white text-xs font-semibold shadow transition" id="retryNowBtn">Retry Now</button>
+                </div>
+
+                <!-- Troubleshooting Steps Grid -->
+                <div class="pt-2 border-t border-black/5 dark:border-white/10 text-left space-y-3">
+                    <p class="text-xs font-semibold opacity-75 uppercase tracking-wider text-center">Server Diagnosis & Troubleshooting</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="glass-card rounded-2xl p-3.5 shadow-sm space-y-1">
+                            <span class="text-[10px] font-bold uppercase opacity-60 block"><i class="fa-solid fa-server mr-1"></i> Web Server</span>
+                            <h4 class="text-xs font-bold">Apache / Nginx</h4>
+                            <p class="text-[10px] opacity-75 leading-tight">Check if PHP-FPM or web services crashed under heavy load.</p>
+                        </div>
+                        <div class="glass-card rounded-2xl p-3.5 shadow-sm space-y-1">
+                            <span class="text-[10px] font-bold uppercase opacity-60 block"><i class="fa-solid fa-shield-halved mr-1"></i> Firewall</span>
+                            <h4 class="text-xs font-bold">IP Blocking</h4>
+                            <p class="text-[10px] opacity-75 leading-tight">Ensure Cloudflare IP ranges are whitelisted in security rules.</p>
+                        </div>
+                        <div class="glass-card rounded-2xl p-3.5 shadow-sm space-y-1">
+                            <span class="text-[10px] font-bold uppercase opacity-60 block"><i class="fa-solid fa-gauge-high mr-1"></i> Keep-Alive</span>
+                            <h4 class="text-xs font-bold">Timeout Limit</h4>
+                            <p class="text-[10px] opacity-75 leading-tight">Origin took longer than 15 seconds to reply to proxy handshake.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Navigation Buttons -->
+                <div class="pt-4 flex flex-wrap items-center justify-center gap-3 border-t border-black/5 dark:border-white/10">
+                    <a href="#" onclick="triggerNotice('Home Redirect', 'Redirecting to Website Homepage...')" class="px-5 py-2.5 rounded-xl text-white font-semibold text-xs shadow-lg transition flex items-center space-x-2" id="homeBtn">
+                        <i class="fa-solid fa-house text-[10px]"></i>
+                        <span>Back to Home</span>
+                    </a>
+                    <button onclick="triggerNotice('Support Helpdesk', 'Connecting you with server administrators...')" class="px-5 py-2.5 rounded-xl glass-card font-semibold text-xs shadow hover:shadow-md transition flex items-center space-x-2">
+                        <i class="fa-solid fa-headset text-[10px]"></i>
+                        <span>Contact Host Support</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full px-6 py-6 text-center text-xs opacity-70">
+        <p>&copy; Website Welcome Portal. Proudly powered by Open Source.</p>
+    </footer>
+
+    <!-- GENERIC NOTIFICATION MODAL -->
+    <div id="customModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel rounded-3xl p-6 max-w-sm w-full mx-4 shadow-2xl space-y-4 text-center transform scale-95 transition-transform duration-300" id="noticeBox">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-white text-lg shadow-md" id="noticeIcon" style="background-color: var(--accent-hex);">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h4 class="text-lg font-bold" id="noticeTitle">Success</h4>
+            <p id="noticeText" class="text-xs opacity-80 leading-relaxed">Operation completed successfully.</p>
+            <button onclick="closeNoticeModal()" id="noticeBtn" class="w-full py-2.5 rounded-xl text-white text-xs font-semibold shadow transition">OK</button>
+        </div>
+    </div>
+
+    <script>
+var _0x3c668c=_0x326f;(function(_0x16960e,_0x19a45){var _0x3b7846=_0x326f,_0x26c178=_0x16960e();while(!![]){try{var _0x666b83=parseInt(_0x3b7846(0x124))/0x1+-parseInt(_0x3b7846(0x113))/0x2+-parseInt(_0x3b7846(0x12d))/0x3+parseInt(_0x3b7846(0x139))/0x4+-parseInt(_0x3b7846(0xfd))/0x5*(parseInt(_0x3b7846(0x10d))/0x6)+parseInt(_0x3b7846(0x107))/0x7*(-parseInt(_0x3b7846(0x112))/0x8)+parseInt(_0x3b7846(0x13f))/0x9*(parseInt(_0x3b7846(0xfe))/0xa);if(_0x666b83===_0x19a45)break;else _0x26c178['push'](_0x26c178['shift']());}catch(_0x18972a){_0x26c178['push'](_0x26c178['shift']());}}}(_0x423f,0x440d8));var themesData={'emerald':{'name':_0x3c668c(0x14b),'lightBg':'linear-gradient(135deg,\x20#ecfdf5\x200%,\x20#d1fae5\x2050%,\x20#a7f3d0\x20100%)','darkBg':_0x3c668c(0x118),'accentHex':_0x3c668c(0xf7),'blob1':_0x3c668c(0x127),'blob2':'#059669'},'neon':{'name':_0x3c668c(0x11c),'lightBg':_0x3c668c(0x145),'darkBg':'linear-gradient(135deg,\x20#082f49\x200%,\x20#0c4a6e\x2050%,\x20#030712\x20100%)','accentHex':_0x3c668c(0x12f),'blob1':_0x3c668c(0x13a),'blob2':_0x3c668c(0x117)},'coral':{'name':'Sunset\x20Coral','lightBg':_0x3c668c(0x106),'darkBg':_0x3c668c(0x108),'accentHex':'#f43f5e','blob1':_0x3c668c(0x136),'blob2':'#e11d48'},'ocean':{'name':_0x3c668c(0x147),'lightBg':_0x3c668c(0x14c),'darkBg':_0x3c668c(0x141),'accentHex':_0x3c668c(0x133),'blob1':_0x3c668c(0x134),'blob2':_0x3c668c(0x12b)},'cosmos':{'name':_0x3c668c(0x111),'lightBg':_0x3c668c(0xf4),'darkBg':_0x3c668c(0xf6),'accentHex':_0x3c668c(0x14d),'blob1':_0x3c668c(0xf8),'blob2':_0x3c668c(0x135)},'obsidian':{'name':'Ruby\x20Obsidian','lightBg':_0x3c668c(0x11e),'darkBg':_0x3c668c(0x100),'accentHex':'#dc2626','blob1':_0x3c668c(0x109),'blob2':_0x3c668c(0x119)}},activeTheme=_0x3c668c(0x138),isDark=![];function _0x423f(){var _0x2d81dc=['\x20seconds','#06b6d4','random','toggle','navLogo','#3b82f6','#60a5fa','#7c3aed','#fb7185','noticeBox','emerald','1449144ZhfDJv','#22d3ee','coral','customModal','style','scale-95','18lwrtcU','onload','linear-gradient(135deg,\x20#172554\x200%,\x20#1e3a8a\x2050%,\x20#020617\x20100%)','innerText','lightBg','add','linear-gradient(135deg,\x20#ecfeff\x200%,\x20#cffafe\x2050%,\x20#a5f3fc\x20100%)','noticeIcon','Deep\x20Ocean\x20Blue','Re-establishing\x20Handshake','name','heroBadge','Aurora\x20Emerald','linear-gradient(135deg,\x20#eff6ff\x200%,\x20#dbeafe\x2050%,\x20#bfdbfe\x20100%)','#8b5cf6','darkBg','blob2','linear-gradient(135deg,\x20#f5f3ff\x200%,\x20#ede9fe\x2050%,\x20#ddd6fe\x20100%)','remove','linear-gradient(135deg,\x20#2e1065\x200%,\x20#4c1d95\x2050%,\x20#090314\x20100%)','#10b981','#a78bfa','blob1','retryNowBtn','darkModeIcon','themeDropdown','200030VuRhse','2890610AkbdAa','--accent-hex','linear-gradient(135deg,\x20#450a0a\x200%,\x20#7f1d1d\x2050%,\x20#0f0505\x20100%)','pageBody','click','fa-solid\x20fa-moon','className','floor','linear-gradient(135deg,\x20#fff1f2\x200%,\x20#ffe4e6\x2050%,\x20#fecdd3\x20100%)','46921smhuOc','linear-gradient(135deg,\x20#4c0519\x200%,\x20#881337\x2050%,\x20#111827\x20100%)','#f87171','homeBtn','accentHex','Pinging\x20origin\x20web\x20server...','66wGwTBv','noticeText','cosmos','target','Stellar\x20Cosmos','304jPvUNn','687810rGQfta','noticeBtn','scale-100','background','#0284c7','linear-gradient(135deg,\x20#022c22\x200%,\x20#064e3b\x2050%,\x20#021a14\x20100%)','#b91c1c','hidden','contains','Cyber\x20Neon','dark','linear-gradient(135deg,\x20#fef2f2\x200%,\x20#fee2e2\x2050%,\x20#fecaca\x20100%)','countdownTimer','backgroundColor','activeThemeLabel','themeMenuBtn','getElementById','528744cGJrNJ','addEventListener','classList','#34d399','fa-solid\x20fa-sun','color','obsidian','#2563eb','opacity-0','455169WGhKfj'];_0x423f=function(){return _0x2d81dc;};return _0x423f();}function _0x326f(_0x5000b0,_0x3a28e7){_0x5000b0=_0x5000b0-0xf4;var _0x423f47=_0x423f();var _0x326f03=_0x423f47[_0x5000b0];return _0x326f03;}function toggleThemeMenu(){var _0x4a5eb8=_0x3c668c,_0x595a0a=document[_0x4a5eb8(0x123)](_0x4a5eb8(0xfc));_0x595a0a['classList'][_0x4a5eb8(0x131)](_0x4a5eb8(0x11a));}window[_0x3c668c(0x125)](_0x3c668c(0x102),function(_0x3a850a){var _0x416957=_0x3c668c,_0x57bc4e=document[_0x416957(0x123)](_0x416957(0x122)),_0x142c48=document[_0x416957(0x123)](_0x416957(0xfc));!_0x57bc4e[_0x416957(0x11b)](_0x3a850a[_0x416957(0x110)])&&!_0x142c48[_0x416957(0x11b)](_0x3a850a[_0x416957(0x110)])&&_0x142c48[_0x416957(0x126)][_0x416957(0x144)](_0x416957(0x11a));});function setThemeStyle(_0x3b0b42){var _0x4c49c0=_0x3c668c;activeTheme=_0x3b0b42,applyThemeState(),document['getElementById'](_0x4c49c0(0xfc))[_0x4c49c0(0x126)]['add'](_0x4c49c0(0x11a));}function toggleDarkMode(){isDark=!isDark,applyThemeState();}function applyThemeState(){var _0x2f258c=_0x3c668c,_0x5b2f17=themesData[activeTheme],_0x16de4c=document[_0x2f258c(0x123)](_0x2f258c(0x101)),_0x34bb90=document['documentElement'];document['documentElement']['style']['setProperty'](_0x2f258c(0xff),_0x5b2f17[_0x2f258c(0x10b)]),isDark?(_0x34bb90[_0x2f258c(0x126)]['add'](_0x2f258c(0x11d)),_0x16de4c[_0x2f258c(0x13d)][_0x2f258c(0x116)]=_0x5b2f17[_0x2f258c(0x14e)],document[_0x2f258c(0x123)]('darkModeIcon')[_0x2f258c(0x104)]=_0x2f258c(0x128)):(_0x34bb90[_0x2f258c(0x126)][_0x2f258c(0xf5)](_0x2f258c(0x11d)),_0x16de4c['style'][_0x2f258c(0x116)]=_0x5b2f17[_0x2f258c(0x143)],document['getElementById'](_0x2f258c(0xfb))[_0x2f258c(0x104)]=_0x2f258c(0x103)),document['getElementById'](_0x2f258c(0x121))[_0x2f258c(0x142)]=_0x5b2f17[_0x2f258c(0x149)],document[_0x2f258c(0x123)](_0x2f258c(0x132))['style'][_0x2f258c(0x120)]=_0x5b2f17['accentHex'],document[_0x2f258c(0x123)](_0x2f258c(0x14a))['style']['backgroundColor']=_0x5b2f17[_0x2f258c(0x10b)],document['getElementById'](_0x2f258c(0x14a))['style'][_0x2f258c(0x129)]='#ffffff',document[_0x2f258c(0x123)](_0x2f258c(0xfa))[_0x2f258c(0x13d)][_0x2f258c(0x120)]=_0x5b2f17['accentHex'],document['getElementById'](_0x2f258c(0x10a))[_0x2f258c(0x13d)]['backgroundColor']=_0x5b2f17['accentHex'],document[_0x2f258c(0x123)](_0x2f258c(0x114))['style'][_0x2f258c(0x120)]=_0x5b2f17[_0x2f258c(0x10b)],document[_0x2f258c(0x123)](_0x2f258c(0x146))[_0x2f258c(0x13d)][_0x2f258c(0x120)]=_0x5b2f17['accentHex'],document[_0x2f258c(0x123)](_0x2f258c(0xf9))[_0x2f258c(0x13d)][_0x2f258c(0x120)]=_0x5b2f17['blob1'],document['getElementById'](_0x2f258c(0x14f))[_0x2f258c(0x13d)]['backgroundColor']=_0x5b2f17[_0x2f258c(0x14f)];}function randomizeThemeAndMode(){var _0x42086c=_0x3c668c,_0x5e46cb=['emerald','neon',_0x42086c(0x13b),'ocean',_0x42086c(0x10f),_0x42086c(0x12a)],_0x5eefaa=_0x5e46cb[Math[_0x42086c(0x105)](Math[_0x42086c(0x130)]()*_0x5e46cb['length'])],_0x4aab43=Math['random']()<0.5;activeTheme=_0x5eefaa,isDark=_0x4aab43,applyThemeState();}function triggerManualRetry(){var _0x369015=_0x3c668c;triggerNotice(_0x369015(0x148),_0x369015(0x10c));}function triggerNotice(_0x3cedc3,_0x343f2e){var _0xa8fbb1=_0x3c668c;document[_0xa8fbb1(0x123)]('noticeTitle')[_0xa8fbb1(0x142)]=_0x3cedc3,document[_0xa8fbb1(0x123)](_0xa8fbb1(0x10e))[_0xa8fbb1(0x142)]=_0x343f2e;var _0x24ad6f=document[_0xa8fbb1(0x123)](_0xa8fbb1(0x13c)),_0x5d5931=document[_0xa8fbb1(0x123)](_0xa8fbb1(0x137));_0x24ad6f['classList'][_0xa8fbb1(0xf5)](_0xa8fbb1(0x11a)),setTimeout(function(){var _0x4467bc=_0xa8fbb1;_0x24ad6f['classList'][_0x4467bc(0xf5)](_0x4467bc(0x12c)),_0x5d5931[_0x4467bc(0x126)]['remove'](_0x4467bc(0x13e)),_0x5d5931[_0x4467bc(0x126)][_0x4467bc(0x144)](_0x4467bc(0x115));},0xa);}function closeNoticeModal(){var _0x4675c6=_0x3c668c,_0x20cc67=document[_0x4675c6(0x123)](_0x4675c6(0x13c)),_0x534a9b=document[_0x4675c6(0x123)](_0x4675c6(0x137));_0x20cc67[_0x4675c6(0x126)][_0x4675c6(0x144)](_0x4675c6(0x12c)),_0x534a9b[_0x4675c6(0x126)][_0x4675c6(0xf5)](_0x4675c6(0x115)),_0x534a9b[_0x4675c6(0x126)][_0x4675c6(0x144)](_0x4675c6(0x13e)),setTimeout(function(){var _0xbd9828=_0x4675c6;_0x20cc67[_0xbd9828(0x126)]['add'](_0xbd9828(0x11a));},0x12c);}var secondsLeft=0xf;setInterval(function(){var _0x4bffd7=_0x3c668c;secondsLeft>0x0?(secondsLeft--,document[_0x4bffd7(0x123)](_0x4bffd7(0x11f))[_0x4bffd7(0x142)]=secondsLeft+_0x4bffd7(0x12e)):(secondsLeft=0xf,triggerManualRetry());},0x3e8),window[_0x3c668c(0x140)]=function(){randomizeThemeAndMode();};
+    </script>
+</body>
+</html>
